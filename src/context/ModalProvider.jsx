@@ -1,0 +1,38 @@
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext, useEffect, useState } from 'react';
+
+const ModalContext = createContext();
+
+export const useModalContext = () => {
+    return useContext(ModalContext);
+}
+
+const ModalProvider = ({ children }) => {
+  const [isShowing, setIsShowing] = useState(false);
+  const [content, setContent] = useState();
+
+  useEffect(() => {
+    if (isShowing) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isShowing]);
+  return (
+    <ModalContext.Provider value={{setIsShowing, setContent}}>
+      {children}
+      {isShowing && (
+        <div className="fixed inset-0">
+          <div
+            onClick={() => setIsShowing(false)}
+            className="absolute inset-0 flex items-center justify-center bg-slate-600/60"
+          >
+            {content}
+          </div>
+        </div>
+      )}
+    </ModalContext.Provider>
+  );
+};
+
+export default ModalProvider;

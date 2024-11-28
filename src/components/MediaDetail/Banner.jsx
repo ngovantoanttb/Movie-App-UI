@@ -3,6 +3,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { groupBy } from 'lodash';
 import CircularProgressBar from '../CircularProgressBar';
 import ImageComponent from '@components/ImageComponent';
+import { useModalContext } from '@context/ModalProvider';
 
 const Banner = ({
   title,
@@ -13,9 +14,12 @@ const Banner = ({
   genres,
   releaseDate,
   point,
-  overview
+  overview,
+  trailerVideoKey
 }) => {
- if(!title) return null;
+  if (!title) return null;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { setIsShowing, setContent } = useModalContext();
   const groupedCrews = groupBy(crews, 'job');
   return (
     <div className="relative mt-16 overflow-hidden bg-black text-white shadow-sm shadow-slate-800">
@@ -55,10 +59,26 @@ const Banner = ({
               />
               Rating
             </div>
-            <button className="rounded bg-white px-4 py-2 text-black">
-              <FontAwesomeIcon className="mr-1" icon={faPlay} />
-              Trailer
-            </button>
+            <>
+              <button
+                onClick={() => {
+                  setIsShowing(true)
+                  setContent(
+                    <iframe
+                      className="aspect-video w-[50vw]"
+                      src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                    />
+                  );
+                }}
+                className="rounded bg-white px-4 py-2 text-[1.3vw] font-bold text-black hover:bg-slate-200"
+              >
+                <FontAwesomeIcon className="mr-1" icon={faPlay} />
+                Trailer
+              </button>
+            </>
           </div>
           <div className="mt-4">
             <p className="mb-2 text-[1.3vw] font-bold">Overview</p>
