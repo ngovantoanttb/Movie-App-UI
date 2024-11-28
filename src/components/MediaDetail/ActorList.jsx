@@ -4,7 +4,7 @@ import ActorInfo from './ActorInfo';
 const ActorList = ({ actors = [] }) => {
   const [isShowMore, setIsShowMore] = useState(false);
 
-  const currentActors = isShowMore ? actors.slice(0, 32) : actors.slice(0, 4);
+  const currentActors = isShowMore ? actors.slice(0, actors.length) : actors.slice(0, 4);
   return (
     <div className="text-white">
       <p className="mb-4 text-[1.4vw] font-bold">Actors</p>
@@ -16,9 +16,9 @@ const ActorList = ({ actors = [] }) => {
             name={actor.name}
             character={actor.character}
             profilePath={actor.profile_path}
+            episodeCount={actor.episodeCount}
           />
         ))}
-        
       </div>
       <p
         className="mt-1 cursor-pointer"
