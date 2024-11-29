@@ -21,7 +21,7 @@ const MediaList = ({ title, tabs }) => {
   const mediaList = (data.results || []).slice(0, 12);
 
   return (
-    <div className="bg-black px-8 py-10 text-[1.2vw] text-white">
+    <div className=" bg-black px-8 py-10 text-[1.2vw] text-white">
       <div className="mb-6 flex items-center gap-4">
         <p className="text-[2vw] font-bold">{title}</p>
         <ul className="flex gap-2 rounded border border-white">

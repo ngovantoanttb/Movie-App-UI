@@ -1,14 +1,17 @@
-import React from 'react';
+/* eslint-disable react-refresh/only-export-components */
+import React, { lazy } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import HomePage from './pages/HomePage.jsx';
-import MovieDetail from './pages/MovieDetail.jsx';
 import RootLayout from './pages/RootLayout.jsx';
-import TVShowDetail from '@pages/TVShowDetail';
 import ModalProvider from '@context/ModalProvider';
-import PeoplePage from '@pages/PeoplePage';
 import { DEFAULT_HEADERS } from '@hooks/useFetch';
+import SearchPage from '@pages/SearchPage';
+
+const MovieDetail = lazy(() => import('@pages/MovieDetail'));
+const TVShowDetail = lazy(() => import('@pages/TVShowDetail'));
+const HomePage = lazy(() => import('@pages/HomePage'));
+const PeoplePage = lazy(() => import('@pages/PeoplePage'));
 
 const router = createBrowserRouter([
   {
@@ -32,12 +35,19 @@ const router = createBrowserRouter([
         loader: async ({ params }) => {
           const res = await fetch(
             `${import.meta.env.VITE_API_HOST}/person/${params.id}?append_to_response=combined_credits`,
-            {...DEFAULT_HEADERS}
+            {
+              headers: {
+                ...DEFAULT_HEADERS,
+              },
+            },
           );
-
           return res;
         },
       },
+      {
+        path: '/search',
+        element: <SearchPage />
+      }
     ],
   },
 ]);
