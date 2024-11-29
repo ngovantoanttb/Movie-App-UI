@@ -50,3 +50,9 @@ html *::-webkit-scrollbar-track {
     border-radius: 0;
     background-color: rgba(0, 0, 0, 0);
 }
+
+@layer components {
+  .container {
+    @apply mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8
+  }
+}

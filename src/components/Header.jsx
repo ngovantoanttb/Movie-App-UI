@@ -6,7 +6,7 @@ import ImageComponent from './ImageComponent';
 
 const Header = () => {
   return (
-    <div className="fixed left-0 right-0 top-0 z-10 h-14 lg:h-20">
+    <div className="fixed left-0 z-10 right-0 top-0 h-14 lg:h-20">
       <header className="flex h-14 items-center justify-between bg-slate-950 p-8 text-white">
         <div className="flex items-center gap-4 lg:gap-6">
           <Link to="/">

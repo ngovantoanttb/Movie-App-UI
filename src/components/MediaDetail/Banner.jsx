@@ -19,7 +19,7 @@ const Banner = ({
 }) => {
   if (!title) return null;
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { setIsShowing, setContent } = useModalContext();
+  const {openPopup } = useModalContext();
   const groupedCrews = groupBy(crews, 'job');
   return (
     <div className="relative mt-16 overflow-hidden bg-black text-white shadow-sm shadow-slate-800">
@@ -27,7 +27,7 @@ const Banner = ({
         width={1200}
         height={800}
         className="absolute inset-0 aspect-video w-full brightness-[0.2]"
-        src={`https://image.tmdb.org/t/p/original${backdropPath}`}
+        src={backdropPath && `https://image.tmdb.org/t/p/original${backdropPath}`}
         alt={title}
       />
       <div className="relative mx-auto flex max-w-screen-xl gap-6 px-6 py-10 lg:gap-8">
@@ -62,15 +62,14 @@ const Banner = ({
             <>
               <button
                 onClick={() => {
-                  setIsShowing(true)
-                  setContent(
+                  openPopup(
                     <iframe
                       className="aspect-video w-[50vw]"
                       src={`https://www.youtube.com/embed/${trailerVideoKey}`}
                       title="YouTube video player"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       referrerPolicy="strict-origin-when-cross-origin"
-                    />
+                    />,
                   );
                 }}
                 className="rounded bg-white px-4 py-2 text-[1.3vw] font-bold text-black hover:bg-slate-200"

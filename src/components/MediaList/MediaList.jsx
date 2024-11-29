@@ -1,9 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MovieCard from '@components/MovieCard';
 import useFetch from '@hooks/useFetch';
 
 const MediaList = ({ title, tabs }) => {
-  const [activeTabId, setActivetabId] = useState(tabs[0]?.id);
+  
+  const [activeTabId, setActiveTabId] = useState(() => {
+    const storedTabId = localStorage.getItem('activeTabId');
+    return tabs.some((tab) => tab.id === storedTabId)
+      ? storedTabId
+      : tabs[0]?.id;
+  });
+
+  // Cập nhật localStorage khi thay đổi tab
+  useEffect(() => {
+    localStorage.setItem('activeTabId', activeTabId);
+  }, [activeTabId]);
 
   const url = tabs.find((tab) => tab.id === activeTabId)?.url;
   const { data } = useFetch({ url });
@@ -18,7 +29,7 @@ const MediaList = ({ title, tabs }) => {
             <li
               className={`cursor-pointer rounded px-4 py-1 ${tab.id === activeTabId ? 'bg-white text-black' : ''}`}
               key={tab.id}
-              onClick={() => setActivetabId(tab.id)}
+              onClick={() => setActiveTabId(tab.id)}
             >
               {tab.name}
             </li>

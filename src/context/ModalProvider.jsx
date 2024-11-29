@@ -4,8 +4,8 @@ import { createContext, useContext, useEffect, useState } from 'react';
 const ModalContext = createContext();
 
 export const useModalContext = () => {
-    return useContext(ModalContext);
-}
+  return useContext(ModalContext);
+};
 
 const ModalProvider = ({ children }) => {
   const [isShowing, setIsShowing] = useState(false);
@@ -18,8 +18,14 @@ const ModalProvider = ({ children }) => {
       document.body.style.overflow = 'auto';
     }
   }, [isShowing]);
+
+  const openPopup = (content) => {
+    setIsShowing(true);
+    setContent(content);
+  };
+
   return (
-    <ModalContext.Provider value={{setIsShowing, setContent}}>
+    <ModalContext.Provider value={{ openPopup }}>
       {children}
       {isShowing && (
         <div className="fixed inset-0">

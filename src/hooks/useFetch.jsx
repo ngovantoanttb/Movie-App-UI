@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const DEFAULT_HEADERS = {
+export const DEFAULT_HEADERS = {
   accept: 'application/json',
   Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
 };
