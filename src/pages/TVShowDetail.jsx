@@ -39,7 +39,7 @@ const TVShowDetail = () => {
   if (isLoading) {
     return <Loading />;
   }
-console.log({tvInfo})
+  
   return (
     <div>
       <Banner
@@ -70,6 +70,7 @@ console.log({tvInfo})
             />
             <SeasonList seasons={(tvInfo.seasons || []).reverse()} />
             <RelateMediaList
+              className='pt-6'
               title="More like this"
               mediaList={relatedTVShow}
               isLoading={isRecommandationLoading}

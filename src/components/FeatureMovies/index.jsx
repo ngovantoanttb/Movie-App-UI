@@ -4,17 +4,17 @@ import { useEffect, useState } from 'react';
 import useFetch from '@hooks/useFetch';
 
 const FeatureMovies = () => {
-  // const [movies, setMovies] = useState([]);
   const [activeMovieId, setActiveMovieId] = useState();
   const { data: popularMoviesResponse } = useFetch({
     url: '/movie/popular',
   });
 
-  const { data: videoResponse } = useFetch({
-    url: `/movie/${activeMovieId}/videos`,
-  }, {enabled: !!activeMovieId});
-
-  console.log({ videoResponse });
+  const { data: videoResponse } = useFetch(
+    {
+      url: `/movie/${activeMovieId}/videos`,
+    },
+    { enabled: !!activeMovieId },
+  );
 
   const movies = (popularMoviesResponse.results || []).slice(0, 4);
 
@@ -27,7 +27,7 @@ const FeatureMovies = () => {
 
   popularMoviesResponse.results || [];
   return (
-    <div className="relative text-white">
+    <div className="relative -mt-16 text-white">
       {movies
         .filter((movie) => movie.id === activeMovieId)
         .map((movie) => (

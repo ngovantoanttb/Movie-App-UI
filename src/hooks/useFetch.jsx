@@ -21,7 +21,6 @@ export default function useFetch({ url = '', method = 'GET', headers = {} }, {en
       })
         .then(async (res) => {
           const data = await res.json();
-          console.log({ data })
           setData(data);
         })
         .catch((err) => {

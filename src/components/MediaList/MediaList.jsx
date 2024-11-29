@@ -1,20 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import MovieCard from '@components/MovieCard';
 import useFetch from '@hooks/useFetch';
 
 const MediaList = ({ title, tabs }) => {
   
-  const [activeTabId, setActiveTabId] = useState(() => {
-    const storedTabId = localStorage.getItem('activeTabId');
-    return tabs.some((tab) => tab.id === storedTabId)
-      ? storedTabId
-      : tabs[0]?.id;
-  });
-
-  // Cập nhật localStorage khi thay đổi tab
-  useEffect(() => {
-    localStorage.setItem('activeTabId', activeTabId);
-  }, [activeTabId]);
+  const [activeTabId, setActiveTabId] = useState(tabs[0]?.id)
 
   const url = tabs.find((tab) => tab.id === activeTabId)?.url;
   const { data } = useFetch({ url });

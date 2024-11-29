@@ -16,12 +16,12 @@ const Header = () => {
               alt="Netflix Logo"
             />
           </Link>
-          <a className="lg:text-xl" href="">
-            Phim
-          </a>
-          <a className="lg:text-xl" href="">
-            Truyền hình
-          </a>
+          <Link to='/search?mediaType=movie' className="lg:text-xl">
+            Movie
+          </Link>
+          <Link to='/search?mediaType=tv' className="lg:text-xl">
+            TV Show
+          </Link>
         </div>
         <div>
           <Link to={'/search'}>

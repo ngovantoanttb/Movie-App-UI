@@ -8,7 +8,6 @@ import { useLoaderData } from 'react-router-dom';
 
 const PeoplePage = () => {
   const peopleInfo = useLoaderData();
-  console.log({ peopleInfo });
 
   const [isShowMore, setIsShowMore] = useState(false);
   const combinedCredits = peopleInfo.combined_credits?.cast || [];

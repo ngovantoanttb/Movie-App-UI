@@ -23,7 +23,7 @@ const ActorInfo = ({ id, name, character, profilePath, episodeCount }) => {
         <p>
           {episodeCount > 1
             ? `${episodeCount} Episodes`
-            : `${episodeCount} Episode`}
+            : `1 Episode`}
         </p>
       </div>
     </Link>

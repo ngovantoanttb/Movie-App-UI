@@ -1,11 +1,10 @@
 import Loading from '@components/Loading';
 import MovieCard from '@components/MovieCard';
 
-
-const RelatedMediaList = ({ mediaList = [], isLoading, title }) => {
+const RelatedMediaList = ({ mediaList = [], isLoading, title, className }) => {
   return (
-    <div className="mt-6">
-      <p className="mb-4 text-[1.4vw] font-bold">{ title}</p>
+    <div className={className}>
+      {title && <p className="mb-4 text-[1.4vw] font-bold">{title}</p>}
       {isLoading ? (
         <Loading />
       ) : (
