@@ -11,7 +11,8 @@ const GenresInput = ({ control, onChange, value = [] }) => {
     
     useEffect(() => {
         onChange([])
-    }, [mediaType, onChange])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mediaType])
 
   return (
     <div className="flex flex-wrap gap-1">
@@ -22,7 +23,7 @@ const GenresInput = ({ control, onChange, value = [] }) => {
               onClick={() => {
                   let newValue = [...value];
                   if (value.includes(genre.id)) {
-                  newValue = newValue.filter(genre => genre !== genre.id)
+                  newValue = newValue.filter((g) => g !== genre.id)
                   } else {
                       newValue = [...newValue, genre.id]
               }
