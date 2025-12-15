@@ -10,6 +10,7 @@ const Movie = (props) => {
     trailerVideoKey,
   } = props;
 
+
   const { openPopup } = useModalContext();
 
   return (
